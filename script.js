@@ -92,6 +92,9 @@ buttons.forEach((elem) => {
                     playerScore = 0;
                     computerScore = 0;
 
+                    playerScoreboard.textContent=playerScore;
+                    computerScoreboard.textContent=computerScore;
+
                     playerImage.src = "question.jpeg";
                     computerImage.src = "question.jpeg";
                 }, 500);
@@ -109,6 +112,9 @@ buttons.forEach((elem) => {
                     alert("You were beat the computer! :(");
                     playerScore = 0;
                     computerScore = 0;
+
+                    playerScoreboard.textContent=playerScore;
+                    computerScoreboard.textContent=computerScore;
 
                     playerImage.src = "question.jpeg";
                     computerImage.src = "question.jpeg";
