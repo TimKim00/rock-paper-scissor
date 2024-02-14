@@ -1,7 +1,13 @@
 domain = {
-    "Rock": "Scissor",
-    "Scissor": "Paper",
-    "Paper": "Rock"
+    "rock": "scissors",
+    "scissors": "paper",
+    "paper": "rock"
+}
+
+imageMap = {
+    "rock" : "rock.jpeg",
+    "paper": "paper.jpg",
+    "scissors": "scissor.png"
 }
     
 function getComputerChoice() {
@@ -15,16 +21,14 @@ function playRound(player, computer) {
     }
 
     if (computer == player ) {
-        return "Tied!"
+        return 0;
     } else {
         let victor = (domain[player] == computer) ? player : computer;
-        let loser = (player == victor) ? computer : player
-        let status_report = `${victor} beats ${loser}.`;
 
         if (victor == player) {
-            return "You win! " + status_report;
+            return 1;
         } else {
-            return "You lose! " + status_report;
+            return -1;
         }
     }
 }
@@ -45,3 +49,75 @@ function playGame() {
     }
 }
 
+// Dynamic logic
+
+const rock = document.getElementById('rock');
+const scissors = document.getElementById('scissors');
+const paper = document.getElementById('paper');
+
+const buttons = document.querySelectorAll('button');
+
+const playerImage = document.querySelector('img#player_choice');
+const computerImage = document.querySelector('img#computer_choice');
+
+const playerScoreboard = document.getElementById('player_score');
+const computerScoreboard = document.getElementById('computer_score');
+
+let playerScore = 0;
+let computerScore = 0;
+
+buttons.forEach((elem) => {
+    elem.addEventListener('click', () => {
+        const name = elem.id;
+        const computerChoice = getComputerChoice();
+
+        // Swap the image. 
+        playerImage.src = imageMap[name];
+        computerImage.src = imageMap[computerChoice];
+
+        result = playRound(name, computerChoice);
+
+        if (result == 0) {
+            setTimeout(function() {
+                alert("Tied!");
+            }, 200);
+        } else if (result == 1) {
+            playerScore += 1;
+            playerScoreboard.textContent=playerScore;
+
+            if (playerScore == 5) {
+                setTimeout(function() {
+                    alert("You beat the computer! Congratz!");
+
+                    playerScore = 0;
+                    computerScore = 0;
+
+                    playerImage.src = "question.jpeg";
+                    computerImage.src = "question.jpeg";
+                }, 500);
+            } else {
+                setTimeout(function() {
+                    alert("You Won!");
+                }, 200);
+            }
+        } else if (result == -1) {
+            computerScore += 1;
+            computerScoreboard.textContent=computerScore;
+
+            if (computerScore == 5) {
+                setTimeout(function() {
+                    alert("You were beat the computer! :(");
+                    playerScore = 0;
+                    computerScore = 0;
+
+                    playerImage.src = "question.jpeg";
+                    computerImage.src = "question.jpeg";
+                }, 500);
+            } else {
+                setTimeout(function() {
+                    alert("You Lose!");
+                }, 200);
+            }
+        }
+    })
+})

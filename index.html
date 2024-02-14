@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RPC - Rock Paper sCissors!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>Welcome to my RPC game!</h1>
+
+    <div class="playing_field">
+        <div class="player">
+            <div id="player_choice">
+                <img src="player.jpeg">
+                <div id="buttons">
+                    <button id="rock"> Rock </button>
+                    <button id="paper"> Paper </button>
+                    <button id="scissors"> Scissors </button>
+                </div>
+            </div>
+            <strong>Score: <span id="player_score">0</span> </strong> 
+            <img id="player_choice" src="question.jpeg" alt="">
+        </div>
+    
+        <div class="player">
+            <img id="computer_choice" src="question.jpeg" alt="">
+            <img src="computer_clip.jpeg">
+            <strong>Score: <span id="computer_score">0</span> </strong> 
+        </div>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
